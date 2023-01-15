@@ -1,0 +1,29 @@
+{
+  "name": "testnodejs",
+  "version": "1.0.0",
+  "description": "Soal Test NodeJs",
+  "main": "server.js",
+  "author": "Riski Aji Kusuma",
+  "license": "ISC",
+  "scripts": {
+    "start": "nodemon server.js",
+    "model:create": "npx sequelize-cli model:create --name",
+    "migrate:create": "npx sequelize-cli migration:create --name",
+    "migrate": "npx sequelize-cli db:migrate",
+    "migrate:rollback": "npx sequelize-cli db:migrate:undo",
+    "migrate:rollback:all": "npx sequelize-cli db:migrate:undo:all",
+    "seed:create": "npx sequelize-cli seed:create --name",
+    "seed:all": "npx sequelize-cli db:seed:all",
+    "seed:rollback": "npx sequelize-cli db:seed:undo",
+    "seed:rollback:all": "npx sequelize-cli db:seed:undo:all"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "sequelize-cli": "^6.5.2"
+  },
+  "dependencies": {
+    "fastify": "^4.11.0",
+    "mysql2": "^3.0.1",
+    "sequelize": "^6.28.0"
+  }
+}

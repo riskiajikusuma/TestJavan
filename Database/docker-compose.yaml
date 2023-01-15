@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    container_name: db-test-javan
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - db-mysql:/data/db
+volumes:
+  db-mysql:
+    name: db-mysql
