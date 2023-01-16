@@ -1,22 +1,21 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Asset extends Model {
+  class Person extends Model {
     static associate(models) {
-      this.belongsToMany(models.Person, {
-        through: "Person_Assets",
-        foreignKey: "asset_id",
-        as: "people",
+      this.belongsTo(models.Family, {
+        foreignKey: "family_id",
+        as: "family",
       });
 
-      this.belongsToMany(models.Family, {
-        through: "Family_Assets",
-        foreignKey: "asset_id",
-        as: "families",
+      this.belongsToMany(models.Asset, {
+        through: "Person_Assets",
+        foreignKey: "person_id",
+        as: "assets",
       });
     }
   }
-  Asset.init(
+  Person.init(
     {
       id: {
         type: DataTypes.INTEGER.UNSIGNED,
@@ -24,26 +23,24 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      name: {
+      nama: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: "asset",
       },
-      price: {
-        type: DataTypes.INTEGER,
+      jenis_kelamin: {
+        type: DataTypes.STRING,
         allowNull: false,
-        field: "harga",
       },
     },
     {
       sequelize,
       paranoid: true,
-      modelName: "Asset",
-      tableName: "Assets",
+      modelName: "Person",
+      tableName: "People",
       createdAt: "created_at",
       updatedAt: "updated_at",
       deletedAt: "deleted_at",
     }
   );
-  return Asset;
+  return Person;
 };

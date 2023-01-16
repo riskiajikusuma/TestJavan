@@ -9,15 +9,13 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      name: {
+      nama: {
         type: Sequelize.STRING,
         allowNull: false,
-        field: "nama",
       },
-      gender: {
+      jenis_kelamin: {
         type: Sequelize.STRING,
         allowNull: false,
-        field: "jenis_kelamin",
       },
       createdAt: {
         allowNull: false,

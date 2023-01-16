@@ -23,15 +23,13 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      patriach: {
+      kepala_keluarga: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: "kepala_keluarga",
       },
     },
     {
       sequelize,
-      // modelName: "Family",
       paranoid: true,
       modelName: "Family",
       tableName: "Families",

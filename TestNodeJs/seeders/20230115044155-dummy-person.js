@@ -12,6 +12,7 @@ module.exports = {
           jenis_kelamin: "Laki-laki",
           created_at: new Date(),
           updated_at: new Date(),
+          family_id: 1,
         },
         {
           id: 2,
@@ -19,6 +20,7 @@ module.exports = {
           jenis_kelamin: "Laki-laki",
           created_at: new Date(),
           updated_at: new Date(),
+          family_id: 1,
         },
         {
           id: 3,
@@ -26,6 +28,7 @@ module.exports = {
           jenis_kelamin: "Perempuan",
           created_at: new Date(),
           updated_at: new Date(),
+          family_id: 1,
         },
         {
           id: 4,
@@ -33,6 +36,7 @@ module.exports = {
           jenis_kelamin: "Laki-laki",
           created_at: new Date(),
           updated_at: new Date(),
+          family_id: 1,
         },
         {
           id: 5,
@@ -40,6 +44,7 @@ module.exports = {
           jenis_kelamin: "Laki-laki",
           created_at: new Date(),
           updated_at: new Date(),
+          family_id: 1,
         },
         {
           id: 6,
@@ -47,6 +52,7 @@ module.exports = {
           jenis_kelamin: "Laki-laki",
           created_at: new Date(),
           updated_at: new Date(),
+          family_id: 2,
         },
         {
           id: 7,
@@ -54,6 +60,7 @@ module.exports = {
           jenis_kelamin: "Perempuan",
           created_at: new Date(),
           updated_at: new Date(),
+          family_id: 2,
         },
         {
           id: 8,
@@ -61,6 +68,7 @@ module.exports = {
           jenis_kelamin: "Perempuan",
           created_at: new Date(),
           updated_at: new Date(),
+          family_id: 3,
         },
         {
           id: 9,
@@ -68,6 +76,7 @@ module.exports = {
           jenis_kelamin: "Perempuan",
           created_at: new Date(),
           updated_at: new Date(),
+          family_id: 3,
         },
         {
           id: 10,
@@ -75,6 +84,7 @@ module.exports = {
           jenis_kelamin: "Laki-laki",
           created_at: new Date(),
           updated_at: new Date(),
+          family_id: 4,
         },
         {
           id: 11,
@@ -82,6 +92,7 @@ module.exports = {
           jenis_kelamin: "Laki-laki",
           created_at: new Date(),
           updated_at: new Date(),
+          family_id: 5,
         },
         {
           id: 12,
@@ -89,6 +100,7 @@ module.exports = {
           jenis_kelamin: "Laki-laki",
           created_at: new Date(),
           updated_at: new Date(),
+          family_id: 5,
         },
       ],
       {}

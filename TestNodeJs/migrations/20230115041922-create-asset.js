@@ -9,15 +9,13 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      name: {
+      asset: {
         type: Sequelize.STRING,
         allowNull: false,
-        field: "asset",
       },
-      price: {
+      harga: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        field: "harga",
       },
       createdAt: {
         allowNull: false,

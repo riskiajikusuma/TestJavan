@@ -9,10 +9,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER.UNSIGNED,
       },
-      patriach: {
+      kepala_keluarga: {
         type: Sequelize.STRING,
         allowNull: false,
-        field: "kepala_keluarga",
       },
       createdAt: {
         allowNull: false,
