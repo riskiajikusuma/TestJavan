@@ -1,50 +1,58 @@
-const fp = require("fastify-plugin");
-
 function plugin(fastify, options, done) {
-  //   fastify.decorate(
-  //     "getFamilies",
-  //     async (params = { selection: {}, includes: [], options: {} }) => {
-  //       return await fastify.db.Family.findAll({
-  //         where: params.selection,
-  //         include: params.includes,
-  //         ...params.options,
-  //       });
-  //     }
-  //   );
+  fastify.decorate(
+    "getPeople",
+    async (params = { selection: {}, includes: [], options: {} }) => {
+      return await fastify.db.models.Person.findAll({
+        where: params.selection,
+        include: params.includes,
+        ...params.options,
+      });
+    }
+  );
 
-  //   fastify.decorate(
-  //     "getFamily",
-  //     async (params = { selection: {}, includes: [], options: {} }) => {
-  //       return await fastify.db.Family.findOne({
-  //         where: params.selection,
-  //         include: params.includes,
-  //         ...params.options,
-  //       });
-  //     }
-  //   );
-  /*
-  fastify.decorate("createFamily", async (params = { data, options: {} }) => {
-    return await fastify.db.Family.create(
+  fastify.decorate(
+    "getPerson",
+    async (params = { selection: {}, includes: [], options: {} }) => {
+      return await fastify.db.models.Person.findOne({
+        where: params.selection,
+        include: params.includes,
+        ...params.options,
+      });
+    }
+  );
+
+  fastify.decorate("createPerson", async (params = { data, options: {} }) => {
+    return await fastify.db.models.Person.create(
       { ...params.data },
       { ...params.options }
     );
   });
 
-  fastify.decorate("updateFamily", async (params = { data, selection }) => {
-    return await fastify.db.Family.update(
-      {
-        ...params.data,
-      },
-      { where: params.selection },
-      { ...params.options }
-    );
-  });
+  fastify.decorate(
+    "updatePerson",
+    async (params = { data, selection: {}, options: {} }) => {
+      return await fastify.db.models.Person.update(
+        {
+          // where: params.selection,
+          ...params.data,
+        },
+        { where: params.selection },
+        { ...params.options }
+      );
+    }
+  );
 
-  fastify.decorate("deleteFamily", async (params = { selection }) => {
-    return await fastify.db.Family.delete({ where: params.selection });
-  });
-  */
+  fastify.decorate(
+    "deletePerson",
+    async (params = { selection, options: {} }) => {
+      return await fastify.db.models.Person.destroy(
+        { where: params.selection },
+        { ...params.options }
+      );
+    }
+  );
+
   done();
 }
 
-module.exports = fp(plugin);
+module.exports = require("fastify-plugin")(plugin);

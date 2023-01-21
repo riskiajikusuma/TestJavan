@@ -7,12 +7,14 @@ module.exports = (sequelize, DataTypes) => {
         through: "Person_Assets",
         foreignKey: "asset_id",
         as: "people",
+        timestamps: false,
       });
 
       this.belongsToMany(models.Family, {
         through: "Family_Assets",
         foreignKey: "asset_id",
         as: "families",
+        timestamps: false,
       });
     }
   }

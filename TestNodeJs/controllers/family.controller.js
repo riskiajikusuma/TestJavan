@@ -24,6 +24,12 @@ async function getFamily(req, res) {
   try {
     const family = await this.getFamily({
       selection: { id: req.params.id },
+      includes: [
+        {
+          model: this.db.models.Person,
+          as: "people",
+        },
+      ],
       options: {
         order: [["created_at", "DESC"]],
       },
@@ -71,6 +77,17 @@ async function updateFamily(req, res) {
   let transaction = await this.db.transaction({ autocommit: false });
 
   try {
+    const family = await this.getFamily({
+      selection: { id: req.params.id },
+    });
+
+    if (!family) {
+      return res.code(400).send({
+        statusCode: 400,
+        message: this.lang("dataNotFound"),
+      });
+    }
+
     await this.updateFamily({
       selection: { id: req.params.id },
       data: {

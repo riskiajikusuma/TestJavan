@@ -47,7 +47,7 @@ function plugin(fastify, options) {
     });
 
     fastify.decorate(instance, sequelize);
-    fastify.decorate("seq", Sequelize);
+    fastify.decorate("Op", Sequelize);
     fastify.addHook("onClose", (fastify, done) => {
       sequelize.close().then(done).catch(done);
     });

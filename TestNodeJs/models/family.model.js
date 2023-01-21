@@ -8,10 +8,11 @@ module.exports = (sequelize, DataTypes) => {
         as: "people",
       });
 
-      this.belongsToMany(models.Family, {
+      this.belongsToMany(models.Asset, {
         through: "Family_Assets",
         foreignKey: "family_id",
         as: "assets",
+        timestamps: false,
       });
     }
   }

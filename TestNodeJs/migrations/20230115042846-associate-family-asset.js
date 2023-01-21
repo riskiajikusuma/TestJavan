@@ -5,6 +5,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Family_Assets", {
       family_id: {
+        primaryKey: true,
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
@@ -13,6 +14,7 @@ module.exports = {
         },
       },
       asset_id: {
+        primaryKey: true,
         allowNull: true,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {

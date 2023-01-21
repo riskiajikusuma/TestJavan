@@ -3,6 +3,7 @@ const {
   getFamily,
   createFamily,
   updateFamily,
+  deleteFamily,
 } = require("../controllers/family.controller");
 const { familyTransform } = require("../transforms/family.transform");
 
@@ -93,6 +94,13 @@ async function routes(fastify, options) {
     schema: {
       description: "Update Family",
       tags: ["Family"],
+      params: {
+        type: "object",
+        properties: {
+          id: { type: "integer" },
+        },
+        required: ["id"],
+      },
       body: {
         type: "object",
         properties: {
@@ -111,6 +119,32 @@ async function routes(fastify, options) {
       },
     },
     handler: updateFamily,
+  });
+
+  fastify.route({
+    method: "DELETE",
+    url: "/:id",
+    schema: {
+      description: "Delete Family",
+      tags: ["Family"],
+      params: {
+        type: "object",
+        properties: {
+          id: { type: "integer" },
+        },
+        required: ["id"],
+      },
+      response: {
+        200: {
+          type: "object",
+          properties: {
+            statusCode: { type: "integer" },
+            message: { type: "string" },
+          },
+        },
+      },
+    },
+    handler: deleteFamily,
   });
 }
 

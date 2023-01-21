@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         through: "Person_Assets",
         foreignKey: "person_id",
         as: "assets",
+        timestamps: false,
       });
     }
   }

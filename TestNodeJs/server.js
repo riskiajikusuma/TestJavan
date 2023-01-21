@@ -1,3 +1,4 @@
+const { appLog, appPort } = require("./configs/common.config");
 const {
   host,
   database,
@@ -10,8 +11,7 @@ const {
   dbLog,
 } = require("./configs/database.config");
 
-const Server = require("fastify");
-const fastify = new Server({ logger: dbLog });
+const fastify = require("fastify")({ logger: appLog });
 
 // ============================Register Plugins=================================
 // Fastify Cors
@@ -52,7 +52,7 @@ fastify.register(require("@fastify/swagger"), {
       url: "https://github.com/riskiajikusuma/TestJavan/tree/main/TestNodeJs",
       email: "rajiku.ajik@gmail.com",
     },
-    host: "127.0.0.1:3000",
+    host: `127.0.0.1:${appPort}`,
     schemes: ["http"],
     consumes: ["application/json"],
     produces: ["application/json"],
@@ -63,10 +63,13 @@ fastify.register(require("@fastify/swagger"), {
 fastify.register(require("@fastify/swagger-ui"), {
   routePrefix: "/documentation",
   uiConfig: {
-    docExpansion: "full",
+    docExpansion: "list",
     deepLinking: false,
   },
 });
+
+// API Register
+fastify.register(require("./plugins/api.plugin"));
 
 // Repositories
 require("fs")
@@ -74,8 +77,16 @@ require("fs")
   .forEach((file) => {
     fastify.register(require(`./repositories/${file}`));
   });
-// fastify.register(require("./repositories/family.repository"));
-// =================================Routes=======================================
-fastify.register(require("./routes/family.route"), { prefix: "family" });
 
-fastify.listen({ host: "0.0.0.0", port: 3000 });
+// =================================Routes=======================================
+fastify.register(require("./routes/family.route"), { prefix: "families" });
+fastify.register(require("./routes/person.route"), { prefix: "people" });
+fastify.register(require("./routes/asset.route"), { prefix: "assets" });
+fastify.register(require("./routes/person.asset.route"), {
+  prefix: "person-assets",
+});
+fastify.register(require("./routes/family.asset.route"), {
+  prefix: "family-assets",
+});
+
+fastify.listen({ host: "0.0.0.0", port: appPort });

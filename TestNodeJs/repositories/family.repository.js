@@ -32,10 +32,10 @@ function plugin(fastify, options, done) {
     "updateFamily",
     async (params = { data, selection, options: {} }) => {
       return await fastify.db.models.Family.update(
-        { where: params.selection },
         {
           ...params.data,
         },
+        { where: params.selection },
         { ...params.options }
       );
     }
@@ -44,7 +44,7 @@ function plugin(fastify, options, done) {
   fastify.decorate(
     "deleteFamily",
     async (params = { selection, options: {} }) => {
-      return await fastify.db.models.Family.delete(
+      return await fastify.db.models.Family.destroy(
         { where: params.selection },
         { ...params.options }
       );
