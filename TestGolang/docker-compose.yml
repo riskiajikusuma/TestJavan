@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  test-golang:
+    container_name: test-golang
+    restart: always
+    build:
+      context: "./"
+      dockerfile: Dockerfile
+    image: test-golang:1.0.0
+    depends_on:
+      - db-test-golang
+    volumes:
+      - ".:/app"
+    ports:
+      - "4000:${APP_PORT}"
+    environment:
+      APP_PORT: ${APP_PORT}
+      DB_HOSTNAME: ${DB_HOST}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_MAX_OPEN_CONN: ${DB_MAX_OPEN_CONN}
+      DB_MAX_IDLE_CONN: ${DB_MAX_IDLE_CONN}
+      DB_CONN_MAX_LIFE_TIME: ${DB_CONN_MAX_LIFE_TIME}
+    networks:
+      - golang-network
+  db-test-golang:
+    image: mysql:latest
+    container_name: db-test-golang
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - db-golang-mysql:/data/db
+    networks:
+      - golang-network
+volumes:
+  db-golang-mysql:
+    name: db-golang-mysql
+networks:
+  golang-network:

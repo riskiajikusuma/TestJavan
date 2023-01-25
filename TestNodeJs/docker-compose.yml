@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  test-nodejs:
+    container_name: test-nodejs
+    restart: always
+    build:
+      context: "./"
+      dockerfile: Dockerfile
+    image: test-nodejs:1.0.0
+    volumes:
+      - ".:/app"
+    ports:
+      - "3000:${APP_PORT}"
+    environment:
+      APP_PORT: ${APP_PORT}
+      APP_LOG: ${APP_LOG}
+      DB_HOST: ${DB_HOST}
+      DB_NAME: ${DB_NAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_MAX_POOL: ${DB_MAX_POOL}
+      DB_MIN_POOL: ${DB_MIN_POOL}
+      DB_IDLE_TIME: ${DB_IDLE_TIME}
+      DB_ACQUIRE_TIME: ${DB_ACQUIRE_TIME}
+      DB_LOG: ${DB_LOG}
+    networks:
+      - nodejs-network
+  db-test-nodejs:
+    image: mysql:latest
+    container_name: db-test-nodejs
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - db-nodejs-mysql:/data/db
+    networks:
+      - nodejs-network
+volumes:
+  db-nodejs-mysql:
+    name: db-nodejs-mysql
+networks:
+  nodejs-network:
