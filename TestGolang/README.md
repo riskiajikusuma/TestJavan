@@ -29,20 +29,14 @@
     DB_CONN_MAX_LIFE_TIME={'DATABASE-CONN-MAX-LIFE-TIME'}
    ```
 
-2. Install Go modules
-
-   ```sh
-   go mod tidy
-   ```
-
-3. Run migrations
+2. Run migrations
 
    ```sh
    cd db
    go run migrate.go
    ```
 
-4. Run app
+3. Run app
 
    ```sh
    go run server.go
